@@ -50,7 +50,7 @@ class Model:
         from vllm import SamplingParams
 
         sampling_params = SamplingParams(
-            temperature=0.2,
+            temperature=0.15,
             top_p=1,
             max_tokens=1200,
             presence_penalty=1.15,
@@ -58,6 +58,7 @@ class Model:
         result = self.llm.generate([prompt], sampling_params)
         return result[0].outputs[0].text
 
+# Endpoint for Mistral RAG Model
 @stub.function(timeout=60 * 2)
 @web_endpoint(method="POST")
 async def web(request: Request):
